@@ -1,5 +1,6 @@
 package lista;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,8 +12,8 @@ public class TiliOhjelma {
 		
 		do
 		{
-		System.out.println("1. Tee tili\n2. Otto\n3. Pano\n4. N‰yt‰ tili\n5. N‰yt‰ kaikki tilit\n6. Poista tili\n0. Lopetus");
-		System.out.print("Anna valintasi (0-6): ");
+		System.out.println("1. Tee tili\n2. Otto\n3. Pano\n4. N‰yt‰ tili\n5. N‰yt‰ kaikki tilit\n6. Poista tili\n7. N‰yt‰ tilitapahtumat\n0. Lopetus");
+		System.out.print("Anna valintasi (0-7): ");
 		Scanner val = new Scanner(System.in);
 		valinta = val.nextInt();
 		
@@ -47,8 +48,10 @@ public class TiliOhjelma {
 		else
 		{
 		System.out.print("Oton m‰‰r‰: ");
+		double ot;
 		Scanner otto = new Scanner(System.in);
-		oikeatili.Otto(otto.nextDouble());
+		ot = otto.nextDouble();
+		oikeatili.Otto(ot);
 		System.out.println("Tilin saldo oton j‰lkeen: " + oikeatili.getSaldo() + "\n");
 		}
 		break;
@@ -71,8 +74,10 @@ public class TiliOhjelma {
 			else
 			{
 				System.out.print("Panon m‰‰r‰: ");
+				double pa;
 				Scanner pano = new Scanner(System.in);
-				oikeatili1.Pano(pano.nextDouble());
+				pa = pano.nextDouble();
+				oikeatili1.Pano(pa);
 				System.out.println("Tilin saldo panon j‰lkeen: " + oikeatili1.getSaldo() + "\n");
 			}
 			break;
@@ -116,6 +121,32 @@ public class TiliOhjelma {
 				System.out.println("Tili‰ ei ole numerolla" + tilinro3 + "\n");
 			}
 			}	
+		break;
+		case 7:
+			System.out.print("Anna tilinumero: ");
+			val.nextLine();
+			String tilinro4 = val.nextLine();
+			Tili oikeatili4 = null;
+			for (int i = 0; i<lista.size(); i++ )
+			{
+				if (lista.get(i).getNumero().contentEquals(tilinro4))
+				{
+					System.out.println("Tapahtumat: ");
+					oikeatili4 = lista.get(i);
+					ArrayList<Tilitapahtuma> list = oikeatili4.getTilitapahtumat();
+					
+					for (int j=0; j < list.size(); j++)
+					{
+						Tilitapahtuma a = list.get(j);
+						System.out.println(a.getPvm()+ " " + a.getMaara());
+					}
+					
+				}
+			}
+			if (oikeatili4 == null)
+			{
+				System.out.println("Tili‰ ei ole numerolla " + tilinro4 + "\n");
+			}
 		break;
 		}
 		}
