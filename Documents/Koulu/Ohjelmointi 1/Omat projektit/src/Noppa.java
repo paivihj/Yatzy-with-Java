@@ -33,7 +33,7 @@ public class Noppa {
 
 	public void heitaNoppaa() {
 		Random rand = new Random();
-		arvo = rand.nextInt(5);
+		arvo = rand.nextInt(6);
 		arvo = arvo + 1;
 	}
 }

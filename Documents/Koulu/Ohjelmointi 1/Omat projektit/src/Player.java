@@ -11,9 +11,8 @@ public class Player {
 		name = "";
 	}
 
-	public Player(String name, int[] points) {
+	public Player(String name) {
 		this.name = name;
-		this.points = points;
 	}
 
 	public String getName() {
@@ -24,12 +23,12 @@ public class Player {
 		this.name = name;
 	}
 
-	public int[] getPoints() {
-		return points;
-	}
-
 	public void setPoints(int row, int points) {
-		this.points[this.row] = points;
+		this.points[row] = points;
+	}
+	
+	public int getPoints(int row) {
+		return points[row];
 	}
 
 	public int getTotalPoints() {

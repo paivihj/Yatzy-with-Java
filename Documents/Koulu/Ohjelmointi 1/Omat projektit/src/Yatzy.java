@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Yatzy {
-	
-		
-		Noppa dice1 = new Noppa(0, "D1");
-		Noppa dice2 = new Noppa(0, "D2");
-		Noppa dice3 = new Noppa(0, "D3");
-		Noppa dice4 = new Noppa(0, "D4");
-		Noppa dice5 = new Noppa(0, "D5");
+				
+		Noppa dice1 = new Noppa(0, "a");
+		Noppa dice2 = new Noppa(0, "b");
+		Noppa dice3 = new Noppa(0, "c");
+		Noppa dice4 = new Noppa(0, "d");
+		Noppa dice5 = new Noppa(0, "e");
 	
 	public void throwDices() {
 		
@@ -65,9 +64,15 @@ public class Yatzy {
 				System.out.print(dices.get(i).getNimi() + ":" + dices.get(i).getArvo() + " ");
 			}
 	}
+	
+	/*public void showTable(int j) {
+		for (int i=0; i<15; i++) {
+			System.out.println(table[i] + ": " + players.get(j).getPoints(i));
+		}*/
 
 	public static void main(String[] args) {
 		
+		String [] table = {"1. Aces", "2. Twos", "3. Threes", "4. Fours", "5. Fives", "6. Sixes", "7. 2 of a kind", "8. Two and two", "9. 3 of a kind", "10. 4 of a kind", "11. Low straight", "12. High straight", "13. Full House", "14. Chance", "15. Yahtzee"};
 		int noPlayers;
 		int rounds = 0;
 		int x;
@@ -89,18 +94,23 @@ public class Yatzy {
 		}
 		
 		do {
+			System.out.println("Round " + (rounds+1) + "!");
 			for (int i=0; i<players.size(); i++) {
 			System.out.println("\nPlayer " + players.get(i).getName() + " throws dices!");
+			System.out.println("");
+			for (int j=0; j<15; j++) {
+				System.out.println(table[j] + ": " + players.get(i).getPoints(j));
+			}
 			game.throwDices();
-			System.out.print("\nWhere do you want to insert points?");
+			System.out.print("\nOn which row do you want to insert points?");
 			x = cin.nextInt();
 			System.out.println("How many points?");
 			points = cin.nextInt();
-			players.get(i).setPoints(x, points);
+			players.get(i).setPoints((x-1), points);
 			}
 			rounds++;
-			for (int i=0; i<players.size(); i++) {
-			System.out.print("\n" + players.get(i).getName() + " has " + players.get(i).getTotalPoints() + " points");
+			for (int k=0; k<players.size(); k++) {
+			System.out.print("\n" + players.get(k).getName() + " has " + players.get(k).getTotalPoints() + " points");
 			}
 		}
 		while (rounds < 15);
@@ -117,6 +127,6 @@ public class Yatzy {
 		
 		System.out.println("Winner is " + winner.getName());
 		
+	
 	}
-
 }
